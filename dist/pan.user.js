@@ -1,12 +1,16 @@
 // ==UserScript==
 // @name               『净网卫士』网盘净化
 // @name:zh-CN         『净网卫士』网盘净化
-// @namespace          userscript.hunlongyu.dev
+// @namespace          ttps://github.com/Hunlongyu
 // @version            0.0.1
 // @author             Hunlongyu
 // @description        Block advertisements, pop ups, promotions, shopping malls, etc
 // @description:zh-CN  屏蔽广告、弹框、推广、商场等
+// @license            MIT
+// @copyright          Copyright (c) [2024] [hunlongyu]
 // @icon               https://i.loli.net/2019/04/22/5cbd720718fdb.png
+// @homepageURL        https://github.com/Hunlongyu/userscript
+// @supportURL         https://github.com/Hunlongyu/userscript/issues
 // @match              https://www.123pan.com/*
 // @match              https://*.lanzoul.com/*
 // @match              https://*.lanzouo.com/*

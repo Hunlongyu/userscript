@@ -16,7 +16,11 @@ export default defineConfig({
           'zh-CN': '屏蔽广告、弹框、推广、商场等'
         },
         icon: 'https://i.loli.net/2019/04/22/5cbd720718fdb.png',
-        namespace: 'userscript.hunlongyu.dev',
+        namespace: 'ttps://github.com/Hunlongyu',
+        copyright: 'Copyright (c) [2024] [hunlongyu]',
+        homepageURL: 'https://github.com/Hunlongyu/userscript',
+        supportURL: 'https://github.com/Hunlongyu/userscript/issues',
+        license: 'MIT',
         match: [
           'https://www.123pan.com/*',
           'https://*.lanzoul.com/*',
