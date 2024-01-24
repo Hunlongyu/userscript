@@ -1,23 +1,22 @@
-## 『净网卫士』百度翻译
+## 『净网卫士』在线翻译
 
 页面精简，去除广告，只保留主要功能的部分。
 
+#### 适配：
+百度翻译: https://fanyi.baidu.com/
+谷歌翻译: https://translate.google.com/
+有道翻译: http://fanyi.youdao.com/
+金山词霸: http://www.iciba.com/fy
+必应翻译: https://cn.bing.com/translator/
+搜狗翻译: https://fanyi.sogou.com/
+DeepL翻译: https://www.deepl.com/translator
+
 #### 更新日志：
 
-* V0.2.0    2024/01/24
+* V0.2.1    2024/01/24
     * 增加几处屏蔽
     * 给脚本搬个新家
 
-* V0.1.0    2019/06/17
-    * 移除 jQuery 依赖、加快网页加载速度
-    * 从 js 控制改成 css 控制
-* V0.0.10    2019/06/14
-    * 更新脚本 icon
 
-* V0.0.8    2017/08/01
-    * 屏蔽百度新增的广告
-
-* V0.0.1    2016/12/05 
-  * 第一个版本发布
   
 
