@@ -1,12 +1,15 @@
 // ==UserScript==
 // @name               『净网卫士』百度翻译
 // @name:zh-CN         『净网卫士』百度翻译
-// @namespace          userscript.hunlongyu.dev
-// @version            0.2.0
+// @namespace          ttps://github.com/Hunlongyu
+// @version            0.2.1
 // @author             Hunlongyu
 // @description        Block ads on Baidu's translation interface, streamline pages, and optimize layout.
 // @description:zh-CN  页面精简，去除广告，只保留主要功能的部分。
+// @license            MIT
+// @copyright          Copyright (c) [2024] [hunlongyu]
 // @icon               https://i.loli.net/2019/04/22/5cbd720718fdb.png
+// @homepageURL        https://github.com/Hunlongyu/userscript
 // @supportURL         https://github.com/Hunlongyu/userscript/issues
 // @match              *://fanyi.baidu.com/*
 // @grant              GM_addStyle

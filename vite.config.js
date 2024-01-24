@@ -16,12 +16,15 @@ export default defineConfig({
           'zh-CN': '页面精简，去除广告，只保留主要功能的部分。'
         },
         icon: 'https://i.loli.net/2019/04/22/5cbd720718fdb.png',
-        namespace: 'userscript.hunlongyu.dev',
+        namespace: 'ttps://github.com/Hunlongyu',
+        copyright: 'Copyright (c) [2024] [hunlongyu]',
+        homepageURL: 'https://github.com/Hunlongyu/userscript',
+        supportURL: 'https://github.com/Hunlongyu/userscript/issues',
+        license: 'MIT',
         match: [
           '*://fanyi.baidu.com/*'
         ],
-        'run-at': 'document-start',
-        supportURL: 'https://github.com/Hunlongyu/userscript/issues'
+        'run-at': 'document-start'
       }
     })
   ]
