@@ -18,7 +18,7 @@ export default defineConfig({
         icon: 'https://i.loli.net/2019/04/22/5cbd720718fdb.png',
         namespace: 'ttps://github.com/Hunlongyu',
         copyright: 'Copyright (c) [2024] [hunlongyu]',
-        homepageURL: 'https://github.com/Hunlongyu/userscript',
+        homepage: 'https://github.com/Hunlongyu/userscript',
         license: 'MIT',
         match: [
           '*://fanyi.baidu.com/*',
