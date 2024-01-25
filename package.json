@@ -7,7 +7,6 @@
     "name": "Hunlongyu",
     "email": "hunlongyu@gmail.com"
   },
-  "description": "table test",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
