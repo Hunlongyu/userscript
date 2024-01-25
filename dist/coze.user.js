@@ -9,7 +9,7 @@
 // @license            MIT
 // @copyright          Copyright (c) [2024] [hunlongyu]
 // @icon               https://i.loli.net/2019/04/22/5cbd720718fdb.png
-// @homepageURL        https://github.com/Hunlongyu/userscript
+// @homepage           https://github.com/Hunlongyu/userscript
 // @supportURL         https://github.com/Hunlongyu/userscript/issues
 // @match              *://www.coze.com/*
 // @grant              GM_addStyle
