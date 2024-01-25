@@ -8,12 +8,12 @@ export default defineConfig({
       entry: 'src/main.js',
       userscript: {
         name: {
-          '': '『小助手』COZE - Free GPT4',
-          'zh-CN': '『小助手』COZE - 免费GPT4'
+          '': '『小助手』腾讯微云 - 离线下载',
+          'zh-CN': '『小助手』腾讯微云 - 离线下载'
         },
         description: {
-          '': 'Hide the left Prompt panel and the middle Skills panel with just one click, and expand the chat panel.',
-          'zh-CN': '一键隐藏左侧 Prompt 面板 和中间 Skills 面板，扩大聊天面板。'
+          '': 'One click offline download, no need to click 2 steps.',
+          'zh-CN': '一键离线下载，不需要点2步。'
         },
         icon: 'https://i.loli.net/2019/04/22/5cbd720718fdb.png',
         namespace: 'ttps://github.com/Hunlongyu',
@@ -21,7 +21,7 @@ export default defineConfig({
         homepage: 'https://github.com/Hunlongyu/userscript',
         license: 'MIT',
         match: [
-          '*://www.coze.com/*'
+          '*://www.weiyun.com/*'
         ],
         'run-at': 'document-end',
         supportURL: 'https://github.com/Hunlongyu/userscript/issues'
