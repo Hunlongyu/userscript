@@ -18,7 +18,7 @@ export default defineConfig({
         icon: 'https://i.loli.net/2019/04/22/5cbd720718fdb.png',
         namespace: 'ttps://github.com/Hunlongyu',
         copyright: 'Copyright (c) [2024] [hunlongyu]',
-        homepage: 'https://github.com/Hunlongyu/userscript',
+        homepageURL: 'https://github.com/Hunlongyu/userscript',
         license: 'MIT',
         match: [
           '*://www.weiyun.com/*'
