@@ -1,23 +1,32 @@
-## 『净网卫士』在线翻译
+## 『小助手』COZE - Free GPT4
 
-页面精简，去除广告，只保留主要功能的部分。
+一键隐藏左侧 Prompt 面板 和中间 Skills 面板，扩大聊天面板。
 
-#### 适配：
+### 预览
 
-* 百度翻译: https://fanyi.baidu.com/
-* 谷歌翻译: https://translate.google.com/
-* 有道翻译: http://fanyi.youdao.com/
-* 金山词霸: http://www.iciba.com/fy
-* 必应翻译: https://cn.bing.com/translator/
-* 搜狗翻译: https://fanyi.sogou.com/
-* DeepL翻译: https://www.deepl.com/translator
+![](https://s2.loli.net/2024/01/25/LTrOasjGUY6Kf5x.png)
 
-#### 更新日志：
+前后对比
 
-* V0.2.1    2024/01/24
-    * 增加几处屏蔽
-    * 给脚本搬个新家
+![](https://s2.loli.net/2024/01/25/jdWHkw8oQ3IOATg.png)
+
+菜单里设置自动展开功能
+
+![](https://s2.loli.net/2024/01/25/OiXKyr6LBcevu23.png)
 
 
-  
+### 功能
+1. 右上角增加 按钮，一键隐藏左侧和中间的面板
+2. 修改窗口最小宽度为 600px
+3. 设置输入框高度最大为 300px
+4. 增加自动展开功能，在菜单里点击即可切换
 
+#### 更新日志 20240125
+1. 脚本搬新家
+
+#### 更新日志 20240111
+1. 移除随机 class 来操作 dom，而是使用 dom 特征来操作 dom
+2. 优化脚本菜单文字
+3. 优化 SPA 导致脚本不生效的问题
+4. 优化 url 匹配的精准度，避免在其他页面也生效
+5. 增加对 explore 页面的支持

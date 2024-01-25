@@ -8,12 +8,12 @@ export default defineConfig({
       entry: 'src/main.js',
       userscript: {
         name: {
-          '': '『净网卫士』在线翻译',
-          'zh-CN': '『净网卫士』在线翻译'
+          '': '『小助手』COZE - Free GPT4',
+          'zh-CN': '『小助手』COZE - 免费GPT4'
         },
         description: {
-          '': "Block ads on Baidu's translation interface, streamline pages, and optimize layout.",
-          'zh-CN': '精简页面，移除广告，优化布局。适配：百度翻译、谷歌翻译、有道翻译、金山词霸、必应翻译、搜狗翻译、DeepL翻译。。'
+          '': 'Hide the left Prompt panel and the middle Skills panel with just one click, and expand the chat panel.',
+          'zh-CN': '一键隐藏左侧 Prompt 面板 和中间 Skills 面板，扩大聊天面板。'
         },
         icon: 'https://i.loli.net/2019/04/22/5cbd720718fdb.png',
         namespace: 'ttps://github.com/Hunlongyu',
@@ -21,16 +21,9 @@ export default defineConfig({
         homepageURL: 'https://github.com/Hunlongyu/userscript',
         license: 'MIT',
         match: [
-          '*://fanyi.baidu.com/*',
-          '*://www.iciba.com/translate',
-          '*://translate.google.com/*',
-          '*://fanyi.youdao.com/*',
-          '*://*.bing.com/translator*',
-          '*://fanyi.sogou.com/*',
-          '*://*.deepl.com/translator*',
-          '*://*.deepl.com/*'
+          '*://www.coze.com/*'
         ],
-        'run-at': 'document-start',
+        'run-at': 'document-end',
         supportURL: 'https://github.com/Hunlongyu/userscript/issues'
       }
     })
