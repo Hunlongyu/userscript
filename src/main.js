@@ -64,6 +64,7 @@ const task = () => {
         GM_setValue('is_expand', false)
       } else {
         GM_addStyle(cssExpand)
+        leftRightPadding()
         document.querySelector('#button_expand').style.display = 'none'
         document.querySelector('#button_shrink').style.display = ''
       }
@@ -90,10 +91,11 @@ const toggleHandle = () => {
 }
 
 // 脚本菜单注册 / 及其交互
-let menuExpandId = null
-const registerMenuCommand = () => {
-  if (menuExpandId) GM_unregisterMenuCommand(menuExpandId)
-  menuExpandId = GM_registerMenuCommand(`${GM_getValue('is_expand') ? '✅' : '❌'}` + `${GM_getValue('is_expand') ? '已开启自动展开功能（点击关闭）' : '已关闭自动展开功能（点击打开）'}`, () => {
+// 自动展开 菜单
+let expandId = null
+const registerExpandId = () => {
+  if (expandId) GM_unregisterMenuCommand(expandId)
+  expandId = GM_registerMenuCommand(`${GM_getValue('is_expand') ? '✅' : '❌'}` + `${GM_getValue('is_expand') ? '已开启自动展开功能（点击关闭）' : '已关闭自动展开功能（点击打开）'}`, () => {
     if (GM_getValue('is_expand') === true) {
       GM_setValue('is_expand', false)
       GM_notification({ text: '已关闭自动展开功能', timeout: 3500, onclick: function () { location.reload() } })
@@ -101,10 +103,84 @@ const registerMenuCommand = () => {
       GM_setValue('is_expand', true)
       GM_notification({ text: '已开启自动展开功能', timeout: 3500, onclick: function () { location.reload() } })
     }
-    registerMenuCommand()
+    registerExpandId()
   })
 }
-registerMenuCommand()
+registerExpandId()
+
+// 面板左右留白
+let paddingPx = null
+const registerPaddingPxId = () => {
+  // 像素
+  if (paddingPx) GM_unregisterMenuCommand(paddingPx)
+  paddingPx = GM_registerMenuCommand(`${GM_getValue('px_padding') > 0 ? '✅' : '❌'}` + `${GM_getValue('px_padding') > 0
+    ? '已开启留白（像素）: ' + GM_getValue('px_padding') + 'px'
+    : '已关闭留白（像素）: 0px'}`, () => {
+    const px = prompt('请输入，面板左右留白的像素值。')
+    if (px === '' || px === null || px <= 0 || Number(px) <= 0) {
+      GM_setValue('px_padding', 0)
+      GM_notification({ text: '无效数值', timeout: 3500, onclick: function () { location.reload() } })
+      GM_addStyle('.sidesheet-container{padding: 0px !important;}')
+    } else {
+      GM_setValue('px_padding', Number(px))
+      GM_notification({ text: '已开启留白（像素）: ' + px + 'px', timeout: 3500, onclick: function () { location.reload() } })
+      GM_addStyle(`.sidesheet-container{padding: 0 ${px}px !important;}`)
+      if (GM_getValue('pe_padding') > 0) {
+        GM_setValue('pe_padding', 0)
+        registerPaddingPeId()
+      }
+      if (!GM_getValue('is_expand')) {
+        GM_setValue('is_expand', true)
+        registerExpandId()
+      }
+    }
+    registerPaddingPxId()
+  })
+}
+registerPaddingPxId()
+
+let paddingPe = null
+const registerPaddingPeId = () => {
+  // 百分比
+  if (paddingPe) GM_unregisterMenuCommand(paddingPe)
+  paddingPe = GM_registerMenuCommand(`${GM_getValue('pe_padding') > 0 ? '✅' : '❌'}` + `${GM_getValue('pe_padding') > 0
+    ? '已开启留白（百分比）: ' + GM_getValue('pe_padding') + '%'
+    : '已关闭留白（百分比）: 0%'}`, () => {
+    let pe = prompt('请输入，面板左右留白的百分比值。')
+    if (pe === '' || pe === null || pe <= 0 || Number(pe) <= 0) {
+      GM_setValue('pe_padding', 0)
+      GM_notification({ text: '无效数值', timeout: 3500, onclick: function () { location.reload() } })
+      GM_addStyle('.sidesheet-container{padding: 0 !important;}')
+    } else {
+      if (Number(pe) >= 50) {
+        pe = 49
+      }
+      GM_setValue('pe_padding', Number(pe))
+      GM_notification({ text: '已开启留白（百分比）: ' + pe + '%', timeout: 3500, onclick: function () { location.reload() } })
+      GM_addStyle(`.sidesheet-container{padding: 0 ${pe}% !important;}`)
+      if (GM_getValue('px_padding') > 0) {
+        GM_setValue('px_padding', 0)
+        registerPaddingPxId()
+      }
+      if (!GM_getValue('is_expand')) {
+        GM_setValue('is_expand', true)
+        registerExpandId()
+      }
+    }
+    registerPaddingPeId()
+  })
+}
+registerPaddingPeId()
+
+function leftRightPadding () {
+  if (GM_getValue('pe_padding') > 0) {
+    GM_addStyle(`.sidesheet-container{padding: 0 ${GM_getValue('pe_padding')}% !important;}`)
+    return
+  }
+  if (GM_getValue('px_padding') > 0) {
+    GM_addStyle(`.sidesheet-container{padding: 0 ${GM_getValue('px_padding')}px !important;}`)
+  }
+}
 
 // 用来完善 SPA 单页应用 url 变化但脚本不生效的问题
 function registerEventHandler (target) {
