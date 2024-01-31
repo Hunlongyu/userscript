@@ -2,7 +2,7 @@
 // @name               『小助手』COZE - Free GPT4
 // @name:zh-CN         『小助手』COZE - 免费GPT4
 // @namespace          ttps://github.com/Hunlongyu
-// @version            0.8.3
+// @version            0.8.4
 // @author             Hunlongyu
 // @description        Hide the left Prompt panel and the middle Skills panel with just one click, and expand the chat panel.
 // @description:zh-CN  一键隐藏左侧 Prompt 面板 和中间 Skills 面板，扩大聊天面板。
@@ -89,6 +89,7 @@
           _GM_setValue("is_expand", false);
         } else {
           _GM_addStyle(cssExpand);
+          leftRightPadding();
           document.querySelector("#button_expand").style.display = "none";
           document.querySelector("#button_shrink").style.display = "";
         }
@@ -110,11 +111,11 @@
       document.querySelector("#button_shrink").style.display = "none";
     });
   };
-  let menuExpandId = null;
-  const registerMenuCommand = () => {
-    if (menuExpandId)
-      _GM_unregisterMenuCommand(menuExpandId);
-    menuExpandId = _GM_registerMenuCommand(`${_GM_getValue("is_expand") ? "✅" : "❌"}${_GM_getValue("is_expand") ? "已开启自动展开功能（点击关闭）" : "已关闭自动展开功能（点击打开）"}`, () => {
+  let expandId = null;
+  const registerExpandId = () => {
+    if (expandId)
+      _GM_unregisterMenuCommand(expandId);
+    expandId = _GM_registerMenuCommand(`${_GM_getValue("is_expand") ? "✅" : "❌"}${_GM_getValue("is_expand") ? "已开启自动展开功能（点击关闭）" : "已关闭自动展开功能（点击打开）"}`, () => {
       if (_GM_getValue("is_expand") === true) {
         _GM_setValue("is_expand", false);
         _GM_notification({ text: "已关闭自动展开功能", timeout: 3500, onclick: function() {
@@ -126,10 +127,84 @@
           location.reload();
         } });
       }
-      registerMenuCommand();
+      registerExpandId();
     });
   };
-  registerMenuCommand();
+  registerExpandId();
+  let paddingPx = null;
+  const registerPaddingPxId = () => {
+    if (paddingPx)
+      _GM_unregisterMenuCommand(paddingPx);
+    paddingPx = _GM_registerMenuCommand(`${_GM_getValue("px_padding") > 0 ? "✅" : "❌"}${_GM_getValue("px_padding") > 0 ? "已开启留白（像素）: " + _GM_getValue("px_padding") + "px" : "已关闭留白（像素）: 0px"}`, () => {
+      const px = prompt("请输入，面板左右留白的像素值。");
+      if (px === "" || px === null || px <= 0 || Number(px) <= 0) {
+        _GM_setValue("px_padding", 0);
+        _GM_notification({ text: "无效数值", timeout: 3500, onclick: function() {
+          location.reload();
+        } });
+        _GM_addStyle(".sidesheet-container{padding: 0px !important;}");
+      } else {
+        _GM_setValue("px_padding", Number(px));
+        _GM_notification({ text: "已开启留白（像素）: " + px + "px", timeout: 3500, onclick: function() {
+          location.reload();
+        } });
+        _GM_addStyle(`.sidesheet-container{padding: 0 ${px}px !important;}`);
+        if (_GM_getValue("pe_padding") > 0) {
+          _GM_setValue("pe_padding", 0);
+          registerPaddingPeId();
+        }
+        if (!_GM_getValue("is_expand")) {
+          _GM_setValue("is_expand", true);
+          registerExpandId();
+        }
+      }
+      registerPaddingPxId();
+    });
+  };
+  registerPaddingPxId();
+  let paddingPe = null;
+  const registerPaddingPeId = () => {
+    if (paddingPe)
+      _GM_unregisterMenuCommand(paddingPe);
+    paddingPe = _GM_registerMenuCommand(`${_GM_getValue("pe_padding") > 0 ? "✅" : "❌"}${_GM_getValue("pe_padding") > 0 ? "已开启留白（百分比）: " + _GM_getValue("pe_padding") + "%" : "已关闭留白（百分比）: 0%"}`, () => {
+      let pe = prompt("请输入，面板左右留白的百分比值。");
+      if (pe === "" || pe === null || pe <= 0 || Number(pe) <= 0) {
+        _GM_setValue("pe_padding", 0);
+        _GM_notification({ text: "无效数值", timeout: 3500, onclick: function() {
+          location.reload();
+        } });
+        _GM_addStyle(".sidesheet-container{padding: 0 !important;}");
+      } else {
+        if (Number(pe) >= 50) {
+          pe = 49;
+        }
+        _GM_setValue("pe_padding", Number(pe));
+        _GM_notification({ text: "已开启留白（百分比）: " + pe + "%", timeout: 3500, onclick: function() {
+          location.reload();
+        } });
+        _GM_addStyle(`.sidesheet-container{padding: 0 ${pe}% !important;}`);
+        if (_GM_getValue("px_padding") > 0) {
+          _GM_setValue("px_padding", 0);
+          registerPaddingPxId();
+        }
+        if (!_GM_getValue("is_expand")) {
+          _GM_setValue("is_expand", true);
+          registerExpandId();
+        }
+      }
+      registerPaddingPeId();
+    });
+  };
+  registerPaddingPeId();
+  function leftRightPadding() {
+    if (_GM_getValue("pe_padding") > 0) {
+      _GM_addStyle(`.sidesheet-container{padding: 0 ${_GM_getValue("pe_padding")}% !important;}`);
+      return;
+    }
+    if (_GM_getValue("px_padding") > 0) {
+      _GM_addStyle(`.sidesheet-container{padding: 0 ${_GM_getValue("px_padding")}px !important;}`);
+    }
+  }
   function registerEventHandler(target) {
     return function registerTargetEventHandler(methodName) {
       const originMethod = target[methodName];
