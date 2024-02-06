@@ -9,7 +9,7 @@ export default defineConfig({
       userscript: {
         name: {
           '': '『小助手』COZE - Free GPT4',
-          'zh-CN': '『小助手』COZE - 免费GPT4'
+          'zh-CN': '『小助手』扣子 COZE - 免费GPT4'
         },
         description: {
           '': 'Hide the left Prompt panel and the middle Skills panel with just one click, and expand the chat panel.',
@@ -21,7 +21,8 @@ export default defineConfig({
         homepage: 'https://github.com/Hunlongyu/userscript',
         license: 'MIT',
         match: [
-          '*://www.coze.com/*'
+          '*://www.coze.com/*',
+          '*://www.coze.cn/*'
         ],
         'run-at': 'document-end',
         supportURL: 'https://github.com/Hunlongyu/userscript/issues'
