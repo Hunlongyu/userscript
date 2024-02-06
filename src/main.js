@@ -38,7 +38,6 @@ const task = () => {
     const parent = document.querySelector('.semi-spin-children')
     if (parent) {
       const firstChild = parent.children[0]
-      console.log('=== first child ===')
       if (firstChild && !parentFlag) {
         firstChild.insertAdjacentHTML('beforeend', buttonExpand)
         firstChild.insertAdjacentHTML('beforeend', buttonShrink)
