@@ -2,7 +2,7 @@
 // @name               『小助手』COZE - Free GPT4
 // @name:zh-CN         『小助手』扣子 COZE - 免费GPT4
 // @namespace          ttps://github.com/Hunlongyu
-// @version            0.8.5
+// @version            0.8.6
 // @author             Hunlongyu
 // @description        Hide the left Prompt panel and the middle Skills panel with just one click, and expand the chat panel.
 // @description:zh-CN  一键隐藏左侧 Prompt 面板 和中间 Skills 面板，扩大聊天面板。
@@ -66,6 +66,7 @@
       const parent = document.querySelector(".semi-spin-children");
       if (parent) {
         const firstChild = parent.children[0];
+        console.log("=== first child ===");
         if (firstChild && !parentFlag) {
           firstChild.insertAdjacentHTML("beforeend", buttonExpand);
           firstChild.insertAdjacentHTML("beforeend", buttonShrink);
@@ -221,11 +222,11 @@
   window.history.pushState = registerHistoryEventHandler("pushState");
   function main() {
     const url = window.location.href;
-    const botReg = /^https:\/\/www\.coze\.com\/.*\/bot\/.*$/;
+    const botReg = /^https:\/\/www\.coze\.(?:com|cn)\/.*\/bot\/.*$/;
     if (botReg.test(url)) {
       task();
     }
-    const exploreReg = /^https:\/\/www\.coze\.com\/explore\/.*$/;
+    const exploreReg = /^https:\/\/www\.coze\.(?:com|cn)\/explore\/.*$/;
     if (exploreReg.test(url)) {
       task();
     }

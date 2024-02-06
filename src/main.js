@@ -38,6 +38,7 @@ const task = () => {
     const parent = document.querySelector('.semi-spin-children')
     if (parent) {
       const firstChild = parent.children[0]
+      console.log('=== first child ===')
       if (firstChild && !parentFlag) {
         firstChild.insertAdjacentHTML('beforeend', buttonExpand)
         firstChild.insertAdjacentHTML('beforeend', buttonShrink)
@@ -200,11 +201,11 @@ window.history.pushState = registerHistoryEventHandler('pushState')
 
 function main () {
   const url = window.location.href
-  const botReg = /^https:\/\/www\.coze\.com\/.*\/bot\/.*$/
+  const botReg = /^https:\/\/www\.coze\.(?:com|cn)\/.*\/bot\/.*$/
   if (botReg.test(url)) {
     task()
   }
-  const exploreReg = /^https:\/\/www\.coze\.com\/explore\/.*$/
+  const exploreReg = /^https:\/\/www\.coze\.(?:com|cn)\/explore\/.*$/
   if (exploreReg.test(url)) {
     task()
   }
