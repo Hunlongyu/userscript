@@ -34,15 +34,21 @@ const buttonShrink = `
 const task = () => {
   let parentFlag = false
   let textareaFlag = false
+
   const timer = setInterval(() => {
     const parent = document.querySelector('.semi-spin-children')
     if (parent) {
       const firstChild = parent.children[0]
       if (firstChild && !parentFlag) {
-        firstChild.insertAdjacentHTML('beforeend', buttonExpand)
-        firstChild.insertAdjacentHTML('beforeend', buttonShrink)
-        toggleHandle()
-        parentFlag = true
+        const btnExpand = document.querySelector('#button_expand')
+        if (btnExpand) {
+          parentFlag = true
+        } else {
+          firstChild.insertAdjacentHTML('beforeend', buttonExpand)
+          firstChild.insertAdjacentHTML('beforeend', buttonShrink)
+          toggleHandle()
+          parentFlag = true
+        }
       }
     }
 
@@ -62,6 +68,9 @@ const task = () => {
     if (parentFlag && textareaFlag) {
       if (!GM_getValue('is_expand')) {
         GM_setValue('is_expand', false)
+        GM_addStyle(cssShrink)
+        document.querySelector('#button_expand').style.display = ''
+        document.querySelector('#button_shrink').style.display = 'none'
       } else {
         GM_addStyle(cssExpand)
         leftRightPadding()
@@ -202,7 +211,9 @@ function main () {
   const url = window.location.href
   const botReg = /^https:\/\/www\.coze\.(?:com|cn)\/.*\/bot\/.*$/
   if (botReg.test(url)) {
-    task()
+    if (!url.includes('analysis')) {
+      task()
+    }
   }
   const exploreReg = /^https:\/\/www\.coze\.(?:com|cn)\/explore\/.*$/
   if (exploreReg.test(url)) {
