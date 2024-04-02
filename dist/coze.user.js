@@ -41,8 +41,17 @@
         .sidesheet-container{
             grid-template-columns: 0 0 1fr !important;
         }
+        .autboP_xS3EJZt4GoTeY,
+        .PSi8HVjhxY0hsgUZGaKG.MWPtuVYYnlMYfpAdNbLa,
+        .pStAbHgTdAlDVUlpMOGP,
         .nXeOwsObZZQToAlSP5Kx{
             display: none !important;
+        }
+        .R_WS6aCLs2gN7PUhpDB0 .hv5iKiECwMBS4Ig79KEg{
+          overflow: auto;
+          }
+        .R_WS6aCLs2gN7PUhpDB0 .hv5iKiECwMBS4Ig79KEg .CR2NV8AIey04fyMgZdCy{
+        overflow: initial;
         }
     `;
   const cssShrink = `
