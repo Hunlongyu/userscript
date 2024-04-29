@@ -2,7 +2,7 @@
 // @name               『小助手』COZE - Free GPT4
 // @name:zh-CN         『小助手』扣子 COZE - 免费GPT4
 // @namespace          ttps://github.com/Hunlongyu
-// @version            0.8.7
+// @version            0.8.8
 // @author             Hunlongyu
 // @description        Hide the left Prompt panel and the middle Skills panel with just one click, and expand the chat panel.
 // @description:zh-CN  一键隐藏左侧 Prompt 面板 和中间 Skills 面板，扩大聊天面板。
@@ -31,34 +31,47 @@
   var _GM_registerMenuCommand = /* @__PURE__ */ (() => typeof GM_registerMenuCommand != "undefined" ? GM_registerMenuCommand : void 0)();
   var _GM_setValue = /* @__PURE__ */ (() => typeof GM_setValue != "undefined" ? GM_setValue : void 0)();
   var _GM_unregisterMenuCommand = /* @__PURE__ */ (() => typeof GM_unregisterMenuCommand != "undefined" ? GM_unregisterMenuCommand : void 0)();
+  const cssDefault = `
+    html{
+      min-width: 600px !important;
+    }
+    body{
+      min-width: 600px !important;
+    }
+    .pStAbHgTdAlDVUlpMOGP{
+      display: none !important;
+    }
+    @media (max-width: 900px) {
+      .autboP_xS3EJZt4GoTeY{
+        display: none !important;
+      }
+      .PSi8HVjhxY0hsgUZGaKG{
+        display: none !important;
+      }
+    }
+`;
   const cssExpand = `
-        html{
-            min-width: 600px !important;
-        }
-        body{
-            min-width: 600px !important;
-        }
-        .sidesheet-container{
-            grid-template-columns: 0 0 1fr !important;
-        }
-        .nXeOwsObZZQToAlSP5Kx{
-            display: none !important;
-        }
-    `;
+    .sidesheet-container{
+        grid-template-columns: 0 1fr !important;
+    }
+    .nXeOwsObZZQToAlSP5Kx{
+      display: none !important;
+    }
+`;
   const cssShrink = `
-        .sidesheet-container{
-            grid-template-columns: 13fr 13fr 14fr !important;
-        }
-        .nXeOwsObZZQToAlSP5Kx{
-            display: "";
-        }
-    `;
+    .sidesheet-container{
+        grid-template-columns: 26fr 14fr !important;
+    }
+    .nXeOwsObZZQToAlSP5Kx{
+        display: "";
+    }
+`;
   const buttonExpand = `
-        <button id="button_expand" style="margin-left: 10px;" class="semi-button semi-button-primary" type="button" aria-disabled="false"><span class="semi-button-content" x-semi-prop="children">展开</span></button>
-    `;
+    <button id="button_expand" style="margin-left: 10px;" class="semi-button semi-button-primary" type="button" aria-disabled="false"><span class="semi-button-content" x-semi-prop="children">展开</span></button>
+`;
   const buttonShrink = `
-        <button id="button_shrink" style="margin-left: 10px; display: none;" class="semi-button semi-button-primary" type="button" aria-disabled="false"><span class="semi-button-content" x-semi-prop="children">恢复</span></button>
-    `;
+    <button id="button_shrink" style="margin-left: 10px; display: none;" class="semi-button semi-button-primary" type="button" aria-disabled="false"><span class="semi-button-content" x-semi-prop="children">恢复</span></button>
+`;
   const task = () => {
     let parentFlag = false;
     let textareaFlag = false;
@@ -91,6 +104,7 @@
         }
       }
       if (parentFlag && textareaFlag) {
+        _GM_addStyle(cssDefault);
         if (!_GM_getValue("is_expand")) {
           _GM_setValue("is_expand", false);
           _GM_addStyle(cssShrink);

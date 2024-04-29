@@ -1,34 +1,47 @@
 // eslint-disable-next-line camelcase
 import { GM_getValue, GM_setValue, GM_addStyle, GM_unregisterMenuCommand, GM_registerMenuCommand, GM_notification } from '$'
 
+const cssDefault = `
+    html{
+      min-width: 600px !important;
+    }
+    body{
+      min-width: 600px !important;
+    }
+    .pStAbHgTdAlDVUlpMOGP{
+      display: none !important;
+    }
+    @media (max-width: 900px) {
+      .autboP_xS3EJZt4GoTeY{
+        display: none !important;
+      }
+      .PSi8HVjhxY0hsgUZGaKG{
+        display: none !important;
+      }
+    }
+`
 const cssExpand = `
-        html{
-            min-width: 600px !important;
-        }
-        body{
-            min-width: 600px !important;
-        }
-        .sidesheet-container{
-            grid-template-columns: 0 0 1fr !important;
-        }
-        .nXeOwsObZZQToAlSP5Kx{
-            display: none !important;
-        }
-    `
+    .sidesheet-container{
+        grid-template-columns: 0 1fr !important;
+    }
+    .nXeOwsObZZQToAlSP5Kx{
+      display: none !important;
+    }
+`
 const cssShrink = `
-        .sidesheet-container{
-            grid-template-columns: 13fr 13fr 14fr !important;
-        }
-        .nXeOwsObZZQToAlSP5Kx{
-            display: "";
-        }
-    `
+    .sidesheet-container{
+        grid-template-columns: 26fr 14fr !important;
+    }
+    .nXeOwsObZZQToAlSP5Kx{
+        display: "";
+    }
+`
 const buttonExpand = `
-        <button id="button_expand" style="margin-left: 10px;" class="semi-button semi-button-primary" type="button" aria-disabled="false"><span class="semi-button-content" x-semi-prop="children">展开</span></button>
-    `
+    <button id="button_expand" style="margin-left: 10px;" class="semi-button semi-button-primary" type="button" aria-disabled="false"><span class="semi-button-content" x-semi-prop="children">展开</span></button>
+`
 const buttonShrink = `
-        <button id="button_shrink" style="margin-left: 10px; display: none;" class="semi-button semi-button-primary" type="button" aria-disabled="false"><span class="semi-button-content" x-semi-prop="children">恢复</span></button>
-    `
+    <button id="button_shrink" style="margin-left: 10px; display: none;" class="semi-button semi-button-primary" type="button" aria-disabled="false"><span class="semi-button-content" x-semi-prop="children">恢复</span></button>
+`
 
 // 执行网页净化功能
 const task = () => {
@@ -66,6 +79,7 @@ const task = () => {
     }
 
     if (parentFlag && textareaFlag) {
+      GM_addStyle(cssDefault);
       if (!GM_getValue('is_expand')) {
         GM_setValue('is_expand', false)
         GM_addStyle(cssShrink)
