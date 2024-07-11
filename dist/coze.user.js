@@ -2,7 +2,7 @@
 // @name               『小助手』COZE - Free GPT4
 // @name:zh-CN         『小助手』扣子 COZE - 免费GPT4
 // @namespace          ttps://github.com/Hunlongyu
-// @version            0.8.8
+// @version            0.8.9
 // @author             Hunlongyu
 // @description        Hide the left Prompt panel and the middle Skills panel with just one click, and expand the chat panel.
 // @description:zh-CN  一键隐藏左侧 Prompt 面板 和中间 Skills 面板，扩大聊天面板。
@@ -51,19 +51,13 @@
     }
 `;
   const cssExpand = `
-    .sidesheet-container{
+    .UMf9npeM8cVkDi0CDqZ0{
         grid-template-columns: 0 1fr !important;
-    }
-    .nXeOwsObZZQToAlSP5Kx{
-      display: none !important;
     }
 `;
   const cssShrink = `
-    .sidesheet-container{
+    .UMf9npeM8cVkDi0CDqZ0{
         grid-template-columns: 26fr 14fr !important;
-    }
-    .nXeOwsObZZQToAlSP5Kx{
-        display: "";
     }
 `;
   const buttonExpand = `
@@ -91,7 +85,7 @@
           }
         }
       }
-      const textareas = document.querySelectorAll(".semi-input-textarea-wrapper");
+      const textareas = document.querySelectorAll(".rc-textarea");
       if (textareas) {
         const lastTextarea = textareas[textareas.length - 1];
         if (lastTextarea && !textareaFlag) {
@@ -154,80 +148,6 @@
     });
   };
   registerExpandId();
-  let paddingPx = null;
-  const registerPaddingPxId = () => {
-    if (paddingPx)
-      _GM_unregisterMenuCommand(paddingPx);
-    paddingPx = _GM_registerMenuCommand(`${_GM_getValue("px_padding") > 0 ? "✅" : "❌"}${_GM_getValue("px_padding") > 0 ? "已开启留白（像素）: " + _GM_getValue("px_padding") + "px" : "已关闭留白（像素）: 0px"}`, () => {
-      const px = prompt("请输入，面板左右留白的像素值。");
-      if (px === "" || px === null || px <= 0 || Number(px) <= 0) {
-        _GM_setValue("px_padding", 0);
-        _GM_notification({ text: "无效数值", timeout: 3500, onclick: function() {
-          location.reload();
-        } });
-        _GM_addStyle(".sidesheet-container{padding: 0px !important;}");
-      } else {
-        _GM_setValue("px_padding", Number(px));
-        _GM_notification({ text: "已开启留白（像素）: " + px + "px", timeout: 3500, onclick: function() {
-          location.reload();
-        } });
-        _GM_addStyle(`.sidesheet-container{padding: 0 ${px}px !important;}`);
-        if (_GM_getValue("pe_padding") > 0) {
-          _GM_setValue("pe_padding", 0);
-          registerPaddingPeId();
-        }
-        if (!_GM_getValue("is_expand")) {
-          _GM_setValue("is_expand", true);
-          registerExpandId();
-        }
-      }
-      registerPaddingPxId();
-    });
-  };
-  registerPaddingPxId();
-  let paddingPe = null;
-  const registerPaddingPeId = () => {
-    if (paddingPe)
-      _GM_unregisterMenuCommand(paddingPe);
-    paddingPe = _GM_registerMenuCommand(`${_GM_getValue("pe_padding") > 0 ? "✅" : "❌"}${_GM_getValue("pe_padding") > 0 ? "已开启留白（百分比）: " + _GM_getValue("pe_padding") + "%" : "已关闭留白（百分比）: 0%"}`, () => {
-      let pe = prompt("请输入，面板左右留白的百分比值。");
-      if (pe === "" || pe === null || pe <= 0 || Number(pe) <= 0) {
-        _GM_setValue("pe_padding", 0);
-        _GM_notification({ text: "无效数值", timeout: 3500, onclick: function() {
-          location.reload();
-        } });
-        _GM_addStyle(".sidesheet-container{padding: 0 !important;}");
-      } else {
-        if (Number(pe) >= 50) {
-          pe = 49;
-        }
-        _GM_setValue("pe_padding", Number(pe));
-        _GM_notification({ text: "已开启留白（百分比）: " + pe + "%", timeout: 3500, onclick: function() {
-          location.reload();
-        } });
-        _GM_addStyle(`.sidesheet-container{padding: 0 ${pe}% !important;}`);
-        if (_GM_getValue("px_padding") > 0) {
-          _GM_setValue("px_padding", 0);
-          registerPaddingPxId();
-        }
-        if (!_GM_getValue("is_expand")) {
-          _GM_setValue("is_expand", true);
-          registerExpandId();
-        }
-      }
-      registerPaddingPeId();
-    });
-  };
-  registerPaddingPeId();
-  function leftRightPadding() {
-    if (_GM_getValue("pe_padding") > 0) {
-      _GM_addStyle(`.sidesheet-container{padding: 0 ${_GM_getValue("pe_padding")}% !important;}`);
-      return;
-    }
-    if (_GM_getValue("px_padding") > 0) {
-      _GM_addStyle(`.sidesheet-container{padding: 0 ${_GM_getValue("px_padding")}px !important;}`);
-    }
-  }
   function registerEventHandler(target) {
     return function registerTargetEventHandler(methodName) {
       const originMethod = target[methodName];
