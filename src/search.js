@@ -4,10 +4,8 @@ import { hasFilterWord } from "./utils.js";
 const _GM_Author = GM_getValue("AuthorFilterWords", "[]");
 const AuthorFilterWords = JSON.parse(_GM_Author);
 
-const _GM_Repository = GM_getValue(
-	"RepositoryFilterWords",
-	'["hooks", "LeetCode"]',
-);
+const _GM_Repository = GM_getValue("RepositoryFilterWords", "[]");
+console.log(_GM_Repository);
 const RepositoryFilterWords = JSON.parse(_GM_Repository);
 
 export function search_results_filter(dom) {
