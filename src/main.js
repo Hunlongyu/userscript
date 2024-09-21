@@ -1,7 +1,5 @@
-// eslint-disable-next-line camelcase
-// import { GM_getValue, GM_setValue, GM_addStyle, GM_notification } from '$'
+import { GM_addStyle, GM_getValue, GM_notificationtiGM_setValue } from "$";
 
-import { GM_log } from "$";
 import { waitElement } from "@1natsu/wait-element";
 
 const target = document.querySelector(".topic");
