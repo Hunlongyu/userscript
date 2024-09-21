@@ -8,12 +8,12 @@ export default defineConfig({
       entry: 'src/main.js',
       userscript: {
         name: {
-          '': '『小助手』COZE - Free GPT4',
-          'zh-CN': '『小助手』扣子 COZE - 免费GPT4'
+          '': '『小助手』Github - filter library',
+          'zh-CN': '『小助手』Github - 过滤库'
         },
         description: {
-          '': 'Hide the left Prompt panel and the middle Skills panel with just one click, and expand the chat panel.',
-          'zh-CN': '一键隐藏左侧 Prompt 面板 和中间 Skills 面板，扩大聊天面板。'
+          '': 'Hide unwanted libraries.',
+          'zh-CN': '隐藏不想看到的库。'
         },
         icon: 'https://i.loli.net/2019/04/22/5cbd720718fdb.png',
         namespace: 'ttps://github.com/Hunlongyu',
@@ -21,8 +21,7 @@ export default defineConfig({
         homepage: 'https://github.com/Hunlongyu/userscript',
         license: 'MIT',
         match: [
-          '*://www.coze.com/*',
-          '*://www.coze.cn/*'
+          '*://github.com/*'
         ],
         'run-at': 'document-end',
         supportURL: 'https://github.com/Hunlongyu/userscript/issues'
