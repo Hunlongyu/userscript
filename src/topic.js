@@ -29,6 +29,7 @@ function topic_article(dom) {
 	const repo = alinks[1].textContent.replace(/\s+/g, "").trim();
 	const author = alinks[0].textContent.replace(/\s+/g, "").trim();
 	const authorAndRepo = `${author}/${repo}`;
+	if (repo === undefined || author || undefined) return;
 
 	const KeyWords = get_filter_words_arr("KeyWords");
 	const has_key = hasKeyWords(repo, KeyWords);

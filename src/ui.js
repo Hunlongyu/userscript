@@ -26,7 +26,7 @@ export function create_topic_ui() {
 	div.appendChild(setting_a);
 }
 
-function create_settings_ui() {
+export function create_settings_ui() {
 	Swal.fire({
 		title: "设置",
 		html: `
@@ -44,7 +44,7 @@ function create_settings_ui() {
                 </div>
                 <textarea style="width: 80%" id="textarea3" class="swal2-textarea" placeholder=""></textarea>
                 <div>
-                    <span style="font-size: 12px;">关键字用英文逗号分隔开。关键字不区分大小写，其他区分大小写。</span>
+                    <span style="font-size: 12px;">关键字用英文逗号分隔开。关键字过滤不区分大小写，作者和仓库区分大小写。</span>
                 </div>
             </div>
         `,

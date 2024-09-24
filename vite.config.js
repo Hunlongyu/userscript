@@ -19,6 +19,7 @@ export default defineConfig({
 				namespace: "ttps://github.com/Hunlongyu",
 				copyright: "Copyright (c) [2024] [hunlongyu]",
 				homepage: "https://github.com/Hunlongyu/userscript",
+				homepageURL: "https://github.com/Hunlongyu/userscript",
 				license: "MIT",
 				match: ["*://github.com/*"],
 				"run-at": "document-end",

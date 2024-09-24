@@ -28,6 +28,7 @@ function check_search_item(dom) {
 	const vec = text.trim().split("/");
 
 	const repo = vec[1];
+	if (repo === undefined) return;
 	const KeyWords = get_filter_words_arr("KeyWords");
 	const has_key = hasKeyWords(repo, KeyWords);
 	if (has_key) {
@@ -37,6 +38,7 @@ function check_search_item(dom) {
 	}
 
 	const author = vec[0];
+	if (author === undefined) return;
 	const AuthorWords = get_filter_words_arr("AuthorWords");
 	const has_author = hasFilterWord(author, AuthorWords);
 	if (has_author) {
