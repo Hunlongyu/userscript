@@ -1,4 +1,9 @@
-import { get_filter_words_arr, hasFilterWord, hasKeyWords } from "./utils.js";
+import {
+	get_filter_words_arr,
+	hasFilterWord,
+	hasKeyWords,
+	hasRepo,
+} from "./utils.js";
 
 export function search_results_filter(dom) {
 	const target = dom.querySelector('[data-testid="results-list"]');
@@ -21,6 +26,7 @@ function check_search_item(dom) {
 	const vec = text.trim().split("/");
 
 	const repo = vec[1];
+	const KeyWords = get_filter_words_arr("KeyWords");
 	const has_key = hasKeyWords(repo, KeyWords);
 	if (has_key) {
 		dom.style.display = "none";
@@ -28,14 +34,16 @@ function check_search_item(dom) {
 	}
 
 	const author = vec[0];
-	const has_author = hasFilterWord(author, AuthorFilterWords);
+	const AuthorWords = get_filter_words_arr("AuthorWords");
+	const has_author = hasFilterWord(author, AuthorWords);
 	if (has_author) {
 		dom.style.display = "none";
 		return;
 	}
 
 	const authorAndRepo = `${author}/${repo}`;
-	const has_repo = hasRepo(authorAndRepo, RepositoryFilterWords);
+	const RepoWords = get_filter_words_arr("RepoWords");
+	const has_repo = hasRepo(authorAndRepo, RepoWords);
 	if (has_repo) {
 		dom.style.display = "none";
 		return;

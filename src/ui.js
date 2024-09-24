@@ -41,7 +41,7 @@ function create_settings_ui() {
                 </div>
                 <textarea style="width: 80%" id="textarea3" class="swal2-textarea" placeholder=""></textarea>
                 <div>
-                    <span style="font-size: 12px;">关键字用英文逗号分隔开。</span>
+                    <span style="font-size: 12px;">关键字用英文逗号分隔开。关键字不区分大小写，其他区分大小写。</span>
                 </div>
             </div>
         `,

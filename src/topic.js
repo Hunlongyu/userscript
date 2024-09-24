@@ -1,4 +1,9 @@
-import { get_filter_words_arr, hasFilterWord, hasKeyWords } from "./utils.js";
+import {
+	get_filter_words_arr,
+	hasFilterWord,
+	hasKeyWords,
+	hasRepo,
+} from "./utils.js";
 
 export function topic_callback(mutationList, _observer) {
 	if (mutationList.length <= 0) return;
@@ -14,8 +19,6 @@ export function topic_callback(mutationList, _observer) {
 }
 
 function topic_article(dom) {
-	const KeyWords = get_filter_words_arr("KeyWords");
-
 	const h3 = dom.querySelector("h3");
 	if (!h3) return;
 
@@ -23,6 +26,7 @@ function topic_article(dom) {
 	if (alinks.length !== 2) return;
 
 	const repo = alinks[1].textContent.replace(/\s+/g, "").trim();
+	const KeyWords = get_filter_words_arr("KeyWords");
 	const has_key = hasKeyWords(repo, KeyWords);
 	if (has_key) {
 		dom.style.display = "none";
@@ -30,14 +34,16 @@ function topic_article(dom) {
 	}
 
 	const author = alinks[0].textContent.replace(/\s+/g, "").trim();
-	const has_author = hasFilterWord(author, AuthorFilterWords);
+	const AuthorWords = get_filter_words_arr("AuthorWords");
+	const has_author = hasFilterWord(author, AuthorWords);
 	if (has_author) {
 		dom.style.display = "none";
 		return;
 	}
 
 	const authorAndRepo = `${author}/${repo}`;
-	const has_repo = hasRepo(authorAndRepo, RepositoryFilterWords);
+	const RepoWords = get_filter_words_arr("RepoWords");
+	const has_repo = hasRepo(authorAndRepo, RepoWords);
 	if (has_repo) {
 		dom.style.display = "none";
 		return;
