@@ -1,9 +1,10 @@
 import { GM_getValue, GM_setValue } from "$";
 
-export function hasFilterWord(text, filterWords) {
-	if (filterWords.length === 1 && filterWords[0].length === 0) return false;
+export function hasAuthor(text, filterWords) {
+	if (text.length === 0) return;
 	for (let i = 0; i < filterWords.length; i++) {
 		const word = filterWords[i];
+		if (word.length === 0) continue;
 		if (text.includes(word)) {
 			return true;
 		}
@@ -12,10 +13,11 @@ export function hasFilterWord(text, filterWords) {
 }
 
 export function hasKeyWords(text, filterWords) {
-	if (filterWords.length === 1 && filterWords[0].length === 0) return false;
+	if (text.length === 0) return;
 	const txt = text.toUpperCase();
 	for (let i = 0; i < filterWords.length; i++) {
 		const word = filterWords[i].toUpperCase();
+		if (word.length === 0) continue;
 		if (txt.includes(word)) {
 			return true;
 		}
@@ -24,11 +26,11 @@ export function hasKeyWords(text, filterWords) {
 }
 
 export function hasRepo(text, filterWords) {
-	if (filterWords.length === 1 && filterWords[0].length === 0) return false;
-	const txt = text;
+	if (text.length === 0) return;
 	for (let i = 0; i < filterWords.length; i++) {
 		const word = filterWords[i];
-		if (txt === word) {
+		if (word.length === 0) continue;
+		if (text === word) {
 			return true;
 		}
 	}
@@ -58,6 +60,17 @@ export function set_filter_words(type, txt) {
 	const arr = txt.split(",");
 	const json = JSON.stringify(arr);
 	GM_setValue(type, json);
+}
+
+export function add_filter_words(type, txt) {
+	const arr = get_filter_words_arr(type);
+	if (arr.includes(txt)) {
+		return false;
+	}
+	arr.push(txt);
+	const json = JSON.stringify(arr);
+	GM_setValue(type, json);
+	return true;
 }
 
 function debounce(fn, delay) {

@@ -1,6 +1,6 @@
 import {
 	get_filter_words_arr,
-	hasFilterWord,
+	hasAuthor,
 	hasKeyWords,
 	hasRepo,
 } from "./utils.js";
@@ -40,7 +40,7 @@ function check_search_item(dom) {
 	const author = vec[0];
 	if (author === undefined) return;
 	const AuthorWords = get_filter_words_arr("AuthorWords");
-	const has_author = hasFilterWord(author, AuthorWords);
+	const has_author = hasAuthor(author, AuthorWords);
 	if (has_author) {
 		dom.style.display = "none";
 		window.search_nums++;

@@ -36,7 +36,7 @@ export function create_settings_ui() {
                 </div>
                 <textarea style="width: 80%" id="textarea1" class="swal2-textarea" placeholder=""></textarea>
                 <div>
-                    <label>作者过滤</label>
+                    <label>开发者过滤</label>
                 </div>
                 <textarea style="width: 80%" id="textarea2" class="swal2-textarea" placeholder=""></textarea>
                 <div>
@@ -44,7 +44,7 @@ export function create_settings_ui() {
                 </div>
                 <textarea style="width: 80%" id="textarea3" class="swal2-textarea" placeholder=""></textarea>
                 <div>
-                    <span style="font-size: 12px;">关键字用英文逗号分隔开。关键字过滤不区分大小写，作者和仓库区分大小写。</span>
+                    <span style="font-size: 12px;">关键字用英文逗号分隔开。关键字过滤不区分大小写，开发者和仓库区分大小写。</span>
                 </div>
             </div>
         `,
@@ -52,8 +52,8 @@ export function create_settings_ui() {
 		didOpen: () => {
 			const doc = document;
 			doc.getElementById("textarea1").value = get_filter_words("KeyWords");
-			doc.getElementById("textarea2").value = get_filter_words("RepoWords");
-			doc.getElementById("textarea3").value = get_filter_words("AuthorWords");
+			doc.getElementById("textarea2").value = get_filter_words("AuthorWords");
+			doc.getElementById("textarea3").value = get_filter_words("RepoWords");
 		},
 		preConfirm: () => {
 			return [
@@ -66,9 +66,23 @@ export function create_settings_ui() {
 	}).then((result) => {
 		if (result.isConfirmed) {
 			set_filter_words("KeyWords", result.value[0]);
-			set_filter_words("RepoWords", result.value[1]);
-			set_filter_words("AuthorWords", result.value[2]);
+			set_filter_words("AuthorWords", result.value[1]);
+			set_filter_words("RepoWords", result.value[2]);
 		}
+	});
+}
+
+export async function create_add_filter_ui() {
+	return await Swal.fire({
+		title: "请选择过滤类型",
+		input: "select",
+		inputOptions: {
+			author: "开发者",
+			repo: "仓库",
+		},
+		showCancelButton: true,
+	}).then((result) => {
+		return result.value;
 	});
 }
 
