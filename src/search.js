@@ -1,12 +1,4 @@
-import { GM_getValue } from "$";
-import { hasFilterWord } from "./utils.js";
-
-const _GM_Author = GM_getValue("AuthorFilterWords", "[]");
-const AuthorFilterWords = JSON.parse(_GM_Author);
-
-const _GM_Repository = GM_getValue("RepositoryFilterWords", "[]");
-console.log(_GM_Repository);
-const RepositoryFilterWords = JSON.parse(_GM_Repository);
+import { get_filter_words_arr, hasFilterWord, hasKeyWords } from "./utils.js";
 
 export function search_results_filter(dom) {
 	const target = dom.querySelector('[data-testid="results-list"]');
@@ -28,15 +20,24 @@ function check_search_item(dom) {
 	const text = item.textContent;
 	const vec = text.trim().split("/");
 
+	const repo = vec[1];
+	const has_key = hasKeyWords(repo, KeyWords);
+	if (has_key) {
+		dom.style.display = "none";
+		return;
+	}
+
 	const author = vec[0];
 	const has_author = hasFilterWord(author, AuthorFilterWords);
 	if (has_author) {
 		dom.style.display = "none";
+		return;
 	}
 
-	const repo = vec[1];
-	const has_repo = hasFilterWord(repo, RepositoryFilterWords);
+	const authorAndRepo = `${author}/${repo}`;
+	const has_repo = hasRepo(authorAndRepo, RepositoryFilterWords);
 	if (has_repo) {
 		dom.style.display = "none";
+		return;
 	}
 }
