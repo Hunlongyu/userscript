@@ -8,12 +8,15 @@ export function create_ui() {
 export function create_topic_ui() {
 	const nav = document.querySelector('[aria-label="Explore navigation"]');
 	const div = nav.querySelector("div");
+
 	const num_a = document.createElement("a");
 	num_a.classList =
 		"js-selected-navigation-item d-inline-block py-2 py-md-3 mr-3 mr-md-4 no-underline subnav-link";
 	num_a.id = "hly_num";
 	num_a.textContent = "过滤 0 个仓库";
+	num_a.onclick = create_number_ui;
 	div.appendChild(num_a);
+
 	const setting_a = document.createElement("a");
 	setting_a.classList =
 		"js-selected-navigation-item d-inline-block py-2 py-md-3 mr-3 mr-md-4 no-underline subnav-link";
@@ -66,5 +69,30 @@ function create_settings_ui() {
 			set_filter_words("RepoWords", result.value[1]);
 			set_filter_words("AuthorWords", result.value[2]);
 		}
+	});
+}
+
+function create_number_ui() {
+	const list = window.topic_repo;
+	const body = document.createElement("div");
+	body.style.height = "400px";
+	body.style.overflowY = "scroll";
+	for (let i = 0; i < list.length; i++) {
+		const div = document.createElement("div");
+		const a = document.createElement("a");
+		const link = list[i];
+		a.href = `/${link}`;
+		a.textContent = `${list[i]}`;
+		a.target = "_blank";
+		a.style.fontSize = "14px";
+		div.appendChild(a);
+		body.appendChild(div);
+	}
+
+	Swal.fire({
+		title: "被过滤仓库",
+		html: body,
+		focusConfirm: false,
+		showCancelButton: false,
 	});
 }

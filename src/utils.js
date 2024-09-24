@@ -1,6 +1,7 @@
 import { GM_getValue, GM_setValue } from "$";
 
 export function hasFilterWord(text, filterWords) {
+	if (filterWords.length === 1 && filterWords[0].length === 0) return false;
 	for (let i = 0; i < filterWords.length; i++) {
 		const word = filterWords[i];
 		if (text.includes(word)) {
@@ -11,6 +12,7 @@ export function hasFilterWord(text, filterWords) {
 }
 
 export function hasKeyWords(text, filterWords) {
+	if (filterWords.length === 1 && filterWords[0].length === 0) return false;
 	const txt = text.toUpperCase();
 	for (let i = 0; i < filterWords.length; i++) {
 		const word = filterWords[i].toUpperCase();
@@ -22,6 +24,7 @@ export function hasKeyWords(text, filterWords) {
 }
 
 export function hasRepo(text, filterWords) {
+	if (filterWords.length === 1 && filterWords[0].length === 0) return false;
 	const txt = text;
 	for (let i = 0; i < filterWords.length; i++) {
 		const word = filterWords[i];
