@@ -59,3 +59,43 @@ export function set_filter_words(type, txt) {
 	const json = JSON.stringify(arr);
 	GM_setValue(type, json);
 }
+
+function debounce(fn, delay) {
+	let timer = null;
+	return (...args) => {
+		if (timer) {
+			clearTimeout(timer);
+		}
+		timer = setTimeout(() => {
+			fn(...args);
+			timer = null;
+		}, delay);
+	};
+}
+
+export function listenToUrlChanges(callback) {
+	const originalPushState = history.pushState;
+	const originalReplaceState = history.replaceState;
+
+	history.pushState = function (...args) {
+		originalPushState.apply(this, args);
+		window.dispatchEvent(new Event("pushstate"));
+		window.dispatchEvent(new Event("locationchange"));
+	};
+
+	history.replaceState = function (...args) {
+		originalReplaceState.apply(this, args);
+		window.dispatchEvent(new Event("replacestate"));
+		window.dispatchEvent(new Event("locationchange"));
+	};
+
+	window.addEventListener("popstate", () => {
+		window.dispatchEvent(new Event("locationchange"));
+	});
+
+	const debouncedCallback = debounce(callback, 200);
+
+	window.addEventListener("locationchange", () => {
+		debouncedCallback(window.location.href);
+	});
+}

@@ -16,6 +16,8 @@ export function search_results_filter(dom) {
 		const div = divs[i];
 		check_search_item(div);
 	}
+
+	show_filter_number();
 }
 
 function check_search_item(dom) {
@@ -30,6 +32,7 @@ function check_search_item(dom) {
 	const has_key = hasKeyWords(repo, KeyWords);
 	if (has_key) {
 		dom.style.display = "none";
+		window.search_nums++;
 		return;
 	}
 
@@ -38,6 +41,7 @@ function check_search_item(dom) {
 	const has_author = hasFilterWord(author, AuthorWords);
 	if (has_author) {
 		dom.style.display = "none";
+		window.search_nums++;
 		return;
 	}
 
@@ -46,6 +50,20 @@ function check_search_item(dom) {
 	const has_repo = hasRepo(authorAndRepo, RepoWords);
 	if (has_repo) {
 		dom.style.display = "none";
+		window.search_nums++;
 		return;
 	}
+}
+
+function show_filter_number() {
+	const parent = document.querySelector(".dafPaR");
+	if (!parent) return;
+
+	const num = document.createElement("span");
+	num.style.fontSize = "12px";
+	num.style.marginLeft = "10px";
+	parent.appendChild(num);
+
+	const search_num = window.search_nums;
+	num.textContent = `过滤数量：${search_num}`;
 }
