@@ -81,7 +81,6 @@ const task = () => {
         document.querySelector('#button_shrink').style.display = 'none'
       } else {
         GM_addStyle(cssExpand)
-        leftRightPadding()
         document.querySelector('#button_expand').style.display = 'none'
         document.querySelector('#button_shrink').style.display = ''
       }
