@@ -24,9 +24,15 @@ const cssExpand = `
     .UMf9npeM8cVkDi0CDqZ0{
         grid-template-columns: 0 1fr !important;
     }
+    .wrapper-single--UMf9npeM8cVkDi0CDqZ0{
+        grid-template-columns: 0 1fr !important;
+    }
 `
 const cssShrink = `
     .UMf9npeM8cVkDi0CDqZ0{
+        grid-template-columns: 26fr 14fr !important;
+    }
+    .wrapper-single--UMf9npeM8cVkDi0CDqZ0{
         grid-template-columns: 26fr 14fr !important;
     }
 `

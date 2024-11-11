@@ -2,7 +2,7 @@
 // @name               『小助手』COZE - Free GPT4
 // @name:zh-CN         『小助手』扣子 COZE - 免费GPT4
 // @namespace          ttps://github.com/Hunlongyu
-// @version            0.8.10
+// @version            0.8.11
 // @author             Hunlongyu
 // @description        Hide the left Prompt panel and the middle Skills panel with just one click, and expand the chat panel.
 // @description:zh-CN  一键隐藏左侧 Prompt 面板 和中间 Skills 面板，扩大聊天面板。
@@ -54,9 +54,15 @@
     .UMf9npeM8cVkDi0CDqZ0{
         grid-template-columns: 0 1fr !important;
     }
+    .wrapper-single--UMf9npeM8cVkDi0CDqZ0{
+        grid-template-columns: 0 1fr !important;
+    }
 `;
   const cssShrink = `
     .UMf9npeM8cVkDi0CDqZ0{
+        grid-template-columns: 26fr 14fr !important;
+    }
+    .wrapper-single--UMf9npeM8cVkDi0CDqZ0{
         grid-template-columns: 26fr 14fr !important;
     }
 `;
