@@ -2,18 +2,16 @@
 import { GM_addStyle, GM_log } from '$'
 
 const css = `
-    #header{display:none !important;}
-    .trans-domain-btn{display: none !important;}
-    .ai-trans-btn{display: none !important;}
-    .manual-trans-btn{display: none !important;}
-    .collection-btn{display: none !important;}
-    .op-trans-fb{display: none !important;}
-    #app-read{display: none !important;}
-    .footer{display: none !important;}
-    .note-expand-btn{display: none !important;}
-    .trans-other-right{display: none;}
-    .app-guide{display: none !important;}
-    .desktop-guide-wrapper{display: none !important;}
+    .KxVKmLZM{display:none !important;}
+    .RAbZsoLs{display:none !important;}
+    .YGx8668_{display:none !important;}
+    .UMjeGiEI{display:none !important;}
+    .qJU3axmS{display:none !important;}
+    .sF3Yx_p0{display:none !important;}
+    .LSOa73BQ{display:none !important;}
+    .qoOttmGv{display:none !important;}
+    .XS9zPMly{display:none !important;}
+    ._m6jE1Mj{display:none !important;}
   `
 try {
   GM_addStyle(css)
