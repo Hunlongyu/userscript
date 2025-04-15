@@ -1,20 +1,49 @@
-// eslint-disable-next-line camelcase
-import { GM_addStyle, GM_log } from '$'
+'use strict';
+import { insertZoteroButton, buttonExists, getReadmeContent } from './github'
+import { ping, saveItems } from "./zotero";
 
-const css = `
-    .KxVKmLZM{display:none !important;}
-    .RAbZsoLs{display:none !important;}
-    .YGx8668_{display:none !important;}
-    .UMjeGiEI{display:none !important;}
-    .qJU3axmS{display:none !important;}
-    .sF3Yx_p0{display:none !important;}
-    .LSOa73BQ{display:none !important;}
-    .qoOttmGv{display:none !important;}
-    .XS9zPMly{display:none !important;}
-    ._m6jE1Mj{display:none !important;}
-  `
+function btnClick() {
+  const txt = getReadmeContent();
+  if (txt) {
+    const url = window.location.href;
+    const title = document.title;
+    if (!ping()) {
+      return;
+    }
+    const res = saveItems({
+      uri: url,
+      items: [{
+        notes: [txt],
+        tags: ['Github', 'README'],
+        url: url,
+        title: title,
+      }]
+    })
+    if (res.success) {
+      console.log('success');
+    }
+  }
+}
+
 try {
-  GM_addStyle(css)
-} catch (e) {
-  GM_log(new Error('GM_addStyle stopped working！'))
+  if (document.readyState === 'complete') {
+    insertZoteroButton(btnClick);
+  } else {
+    window.addEventListener('DOMContentLoaded', insertZoteroButton(btnClick));
+  }
+  const observer = new MutationObserver(function (mutations) {
+    if (!buttonExists()) {
+      insertZoteroButton(btnClick);
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: false,
+    characterData: false
+  });
+}
+catch (error) {
+  console.error(error);
 }
