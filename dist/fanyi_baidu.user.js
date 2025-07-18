@@ -2,7 +2,7 @@
 // @name               『净网卫士』百度翻译
 // @name:zh-CN         『净网卫士』百度翻译
 // @namespace          ttps://github.com/Hunlongyu
-// @version            0.3.1
+// @version            0.3.3
 // @author             Hunlongyu
 // @description        Block ads on Baidu's translation interface, streamline pages, and optimize layout.
 // @description:zh-CN  页面精简，去除广告，只保留主要功能的部分。
@@ -11,6 +11,7 @@
 // @icon               https://i.loli.net/2019/04/22/5cbd720718fdb.png
 // @homepage           https://github.com/Hunlongyu/userscript
 // @supportURL         https://github.com/Hunlongyu/userscript/issues
+// @match              *://fanyi.baidu.com/mtpe-individual/*
 // @match              *://fanyi.baidu.com/*
 // @grant              GM_addStyle
 // @grant              GM_log
@@ -23,16 +24,22 @@
   var _GM_addStyle = /* @__PURE__ */ (() => typeof GM_addStyle != "undefined" ? GM_addStyle : void 0)();
   var _GM_log = /* @__PURE__ */ (() => typeof GM_log != "undefined" ? GM_log : void 0)();
   const css = `
-    .KxVKmLZM{display:none !important;}
-    .RAbZsoLs{display:none !important;}
-    .YGx8668_{display:none !important;}
-    .UMjeGiEI{display:none !important;}
-    .qJU3axmS{display:none !important;}
-    .sF3Yx_p0{display:none !important;}
-    .LSOa73BQ{display:none !important;}
-    .qoOttmGv{display:none !important;}
-    .XS9zPMly{display:none !important;}
-    ._m6jE1Mj{display:none !important;}
+    .MMqloUXF{display:none !important;}
+    .ZqJhu4sT{display:none !important;}
+    .UzOvH9bK{display:none !important;}
+    .Hu5qsRSB{display:none !important;}
+    .qphmPPyw{display:none !important;}
+    .tk4FR4Cn{display:none !important;}
+    .rfhEM3lg{display:none !important;}
+
+    #header{display:none !important;}
+    .nav-dxy-logo{display:none !important;}
+    #app-read{display:none !important;}
+    .footer{display:none !important;}
+    .trans-domain-btn{display:none !important;}
+    .trans-btn-zh{display:none !important;}
+    .ai-trans-btn{display:none !important;}
+    .manual-trans-btn{display:none !important;}
   `;
   try {
     _GM_addStyle(css);
