@@ -22,6 +22,7 @@ export default defineConfig({
         supportURL: 'https://github.com/Hunlongyu/userscript/issues',
         license: 'MIT',
         match: [
+          '*://fanyi.baidu.com/mtpe-individual/*',
           '*://fanyi.baidu.com/*'
         ],
         'run-at': 'document-start'
